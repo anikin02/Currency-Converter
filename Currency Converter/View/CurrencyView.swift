@@ -9,6 +9,8 @@ import SwiftUI
 
 struct CurrencyView: View {
   @State var currencySelection = "USD"
+  @EnvironmentObject var currencyConverterViewModel: CurrencyConverterViewModel
+  
   let title: String
   
   var body: some View {
@@ -19,7 +21,7 @@ struct CurrencyView: View {
           .foregroundStyle(Color("appPurple"))
       }
       HStack {
-        Text("1000")
+        Text(title == "From" ? currencyConverterViewModel.inputValue : currencyConverterViewModel.outputValue)
           .font(.system(size: 50, weight: .bold))
           .foregroundStyle(Color("appPurple"))
         Spacer()

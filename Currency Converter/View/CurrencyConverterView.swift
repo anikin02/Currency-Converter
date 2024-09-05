@@ -8,12 +8,16 @@
 import SwiftUI
 
 struct CurrencyConverterView: View {
+  
+  @ObservedObject var currencyConverterViewModel = CurrencyConverterViewModel()
+  
   var body: some View {
     VStack(alignment: .leading) {
       Spacer()
       // Input
       CurrencyView(title: "From")
         .padding(.horizontal, 20)
+        .environmentObject(currencyConverterViewModel)
       
       // Switch
       VStack {
@@ -34,12 +38,14 @@ struct CurrencyConverterView: View {
       // Output
       CurrencyView(title: "To")
         .padding(.horizontal, 20)
+        .environmentObject(currencyConverterViewModel)
       
       Spacer()
       
       // Keyboard
       KeyboardView()
         .padding(20)
+        .environmentObject(currencyConverterViewModel)
     }
   }
 }
