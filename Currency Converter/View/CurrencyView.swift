@@ -21,10 +21,17 @@ struct CurrencyView: View {
           .foregroundStyle(Color("appPurple"))
       }
       HStack {
-        Text(title == "From" ? currencyConverterViewModel.inputValue : currencyConverterViewModel.outputValue)
-          .font(.system(size: 50, weight: .bold))
-          .foregroundStyle(Color("appPurple"))
-        Spacer()
+        HStack {
+          Text(title == "From" ? currencyConverterViewModel.inputValue : currencyConverterViewModel.outputValue)
+            .font(.system(size: 50, weight: .bold))
+            .foregroundStyle(Color("appPurple"))
+          Spacer()
+        }
+        .frame(maxWidth: .infinity)
+        .padding(.horizontal, 10)
+        .background(Color(.systemGray6))
+        .clipShape(.rect(cornerRadius: 10))
+        
         Picker("Currency", selection: $currencySelection) {
           Text("USD")
             .tag("USD")
