@@ -48,6 +48,7 @@ struct CurrencyConverterView: View {
         .environmentObject(currencyConverterViewModel)
     }
   }
+
 }
 
 

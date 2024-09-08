@@ -9,7 +9,24 @@ import Foundation
 
 class CurrencyConverterViewModel: ObservableObject {
   @Published var inputValue: String = "0"
+  @Published var inputCurrency: String = "EUR"
+  
   @Published var outputValue: String = "0"
+  @Published var outputCurrency: String = "USD"
+  
+  @Published var currencyRate = CurrencyRate(rates: [String : Double]())
+  
+  init() {
+    setCurrencyRateFromAPI()
+  }
+  
+  func setCurrencyRateFromAPI() {
+    APIManager.shared.getCurrencyRate { responce in
+      DispatchQueue.main.async {
+        self.currencyRate = responce
+      }
+    }
+  }
   
   func addInputElement(element: String) {
     if inputValue == "0" {
@@ -20,7 +37,8 @@ class CurrencyConverterViewModel: ObservableObject {
   }
   
   func converterCurrency() {
-    outputValue = inputValue
+    let temp = (Double(inputValue) ?? 0) / currencyRate.rates[inputCurrency]! * currencyRate.rates[outputCurrency]!
+    outputValue = String(format: "%.2f", temp)
   }
   
   func cleanInput() {

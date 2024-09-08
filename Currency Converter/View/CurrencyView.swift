@@ -8,7 +8,6 @@
 import SwiftUI
 
 struct CurrencyView: View {
-  @State var currencySelection = "USD"
   @EnvironmentObject var currencyConverterViewModel: CurrencyConverterViewModel
   
   let title: String
@@ -32,13 +31,20 @@ struct CurrencyView: View {
         .background(Color(.systemGray6))
         .clipShape(.rect(cornerRadius: 10))
         
-        Picker("Currency", selection: $currencySelection) {
-          Text("USD")
-            .tag("USD")
-          Text("EUR")
-            .tag("EUR")
+        if !currencyConverterViewModel.currencyRate.rates.isEmpty {
+          Picker("Currency",
+                 selection: title == "From" ? $currencyConverterViewModel.inputCurrency : $currencyConverterViewModel.outputCurrency) {
+            ForEach(Array(currencyConverterViewModel.currencyRate.rates.keys).sorted(), id: \.self) { key in
+              Text(key)
+                .tag(key)
+            }
+          }
+          .tint(Color(.orange))
+        } else {
+          Text("Load...")
+            .padding(11)
+            .foregroundColor(.orange)
         }
-        .tint(Color(.orange))
       }
     }
   }

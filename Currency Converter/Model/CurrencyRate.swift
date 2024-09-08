@@ -7,6 +7,6 @@
 
 import Foundation
 
-struct CurrencyRate {
+struct CurrencyRate: Codable {
   var rates: [String: Double]
 }
