@@ -22,7 +22,7 @@ struct CurrencyConverterView: View {
       // Switch
       VStack {
         Button {
-          
+          currencyConverterViewModel.swapValues()
         } label: {
           Image(systemName: "arrow.up.arrow.down")
             .resizable()

@@ -45,4 +45,19 @@ class CurrencyConverterViewModel: ObservableObject {
     inputValue = "0"
     outputValue = "0"
   }
+  
+  func swapValues() {
+    converterCurrency()
+    
+    let tempValue = inputValue
+    let tempCurrency = inputCurrency
+    
+    inputValue = outputValue
+    inputCurrency = outputCurrency
+    
+    outputValue = tempValue
+    outputCurrency = tempCurrency
+    
+    converterCurrency()
+  }
 }
