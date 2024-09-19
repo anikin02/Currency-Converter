@@ -27,4 +27,4 @@ Currency-Converter is a simple currency conversion app built using Swift and Swi
 ## API
 The app uses the [vatcomply API](https://vatcomply.com) to retrieve the latest exchange rates.
 ## Demo
-![Demo](demo.gif)
+<img src="demo.gif" width="340">
